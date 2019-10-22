@@ -8,11 +8,11 @@ import (
 
 const (
 	//<a href="http://album.zhenai.com/u/1361133512" target="_blank">怎么会迷上你</a>
-	cityReg = `<a href="(http://www.zhenai.com/zhenghun/[0-9a-z]+)"[^>]*>([^<]+)</a>`
+	cityListReg = `<a href="(http://www.zhenai.com/zhenghun/[0-9a-z]+)"[^>]*>([^<]+)</a>`
 )
 
 func ParseCityList(contents []byte) engine.ParseResult {
-	compile := regexp.MustCompile(cityReg)
+	compile := regexp.MustCompile(cityListReg)
 
 	submatch := compile.FindAllSubmatch(contents, -1)
 
@@ -37,7 +37,7 @@ func ParseCityList(contents []byte) engine.ParseResult {
 				//	//需要拷贝m[2] ---- name := string(m[2])
 				//	return ParseProfile(bytes, name)
 				//},
-				ParserFunc : engine.NilParser,
+				ParserFunc : ParseCity,
 			})
 	}
 
