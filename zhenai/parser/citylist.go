@@ -19,14 +19,13 @@ func ParseCityList(contents []byte) engine.ParseResult {
 	//这里要把解析到的每个URL都生成一个新的request
 
 	result := engine.ParseResult{}
-
+	limit:=10
 	for _, m := range submatch {
 		name := string(m[2])
 		log.Printf("UserName:%s URL:%s\n", string(m[2]), string(m[1]))
 
 		//把用户信息人名加到item里
 		result.Items = append(result.Items, name)
-
 		result.Request = append(result.Request,
 			engine.Request{
 				//用户信息对应的URL,用于之后的用户信息爬取
@@ -39,6 +38,10 @@ func ParseCityList(contents []byte) engine.ParseResult {
 				//},
 				ParserFunc : ParseCity,
 			})
+		limit--
+		if(limit==0){
+			break
+		}
 	}
 
 	return result

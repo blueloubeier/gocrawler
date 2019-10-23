@@ -7,10 +7,10 @@ import (
 )
 
 func TestParseCityList(t *testing.T){
-	contents,err :=fetcher.Fetch("http://www.zhenai.com/zhenghun/aba")
+	contents,err :=fetcher.Fetch("https://album.zhenai.com/u/1403643364")
 	if err !=nil{
 		panic(err)
 	}
-	result :=ParseCity(contents)
-	fmt.Printf("%d\n",len(result.Request))
+	result :=ParseProfile(contents,"james")
+	fmt.Printf("%+v\n" ,result)
 }

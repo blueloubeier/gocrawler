@@ -8,12 +8,14 @@ import (
 )
 
 var (
-	// <td><span class="label">年龄：</span>25岁</td>
-	ageReg = regexp.MustCompile(`<td><span class="label">年龄：</span>([\d]+)岁</td>`)
-	// <td><span class="label">身高：</span>182CM</td>
-	heightReg = regexp.MustCompile(`<td><span class="label">身高：</span>(.+)CM</td>`)
-	// <td><span class="label">月收入：</span>5001-8000元</td>
-	incomeReg = regexp.MustCompile(`<td><span class="label">月收入：</span>([0-9-]+)元</td>`)
+	// <div data-v-8b1eac0c="" class="m-btn purple">30岁</div>
+	//ageReg = regexp.MustCompile(`<td><span class="label">年龄：</span>([\d]+)岁</td>`)
+	ageReg = regexp.MustCompile(`<div class="m-btn purple" data-v-8b1eac0c>([\d]+)岁</div>`)
+	// <div class="m-btn purple" data-v-8b1eac0c>170cm</div>
+	heightReg = regexp.MustCompile(`<div class="m-btn purple" data-v-8b1eac0c>([\d]+)cm</div>`)
+	// <div class="m-btn purple" data-v-8b1eac0c>月收入:8千-1.2万</div>
+	//incomeReg = regexp.MustCompile(`<td><span class="label">月收入：</span>([0-9-]+)元</td>`)
+	incomeReg = regexp.MustCompile(`<div class="m-btn purple" data-v-8b1eac0c>月收入:(.+?)</div>`)
 	//<td><span class="label">婚况：</span>未婚</td>
 	marriageReg = regexp.MustCompile(`<td><span class="label">婚况：</span>(.+)</td>`)
 	//<td><span class="label">学历：</span>大学本科</td>
@@ -31,8 +33,8 @@ var (
 	// <td width="150"><span class="grayL">性别：</span>男</td>
 	genderReg = regexp.MustCompile(`<td width="150"><span class="grayL">性别：</span>(.+)</td>`)
 
-	// <td><span class="label">体重：</span><span field="">67KG</span></td>
-	weightReg = regexp.MustCompile(`<td><span class="label">体重：</span><span field="">(.+)KG</span></td>`)
+	// <div class="m-btn purple" data-v-8b1eac0c>60kg</div>
+	weightReg = regexp.MustCompile(`<div class="m-btn purple" data-v-8b1eac0c>([\d]+)kg</div>`)
 	//<h1 class="ceiling-name ib fl fs24 lh32 blue">怎么会迷上你</h1>
 	//nameReg = regexp.MustCompile(`<h1 class="ceiling-name ib fl fs24 lh32 blue">([^\d]+)</h1>  `)
 	//<td><span class="label">是否购车：</span><span field="">未购车</span></td>
