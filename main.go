@@ -12,5 +12,5 @@ func main() {
 		ParserFunc: parser.ParseCityList,
 	}
 
-	engine.Run(request)
+	engine.SimpleEngine{}.Run(request)
 }
