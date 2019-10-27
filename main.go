@@ -2,6 +2,7 @@ package main
 
 import (
 	"crawler/engine"
+	"crawler/scheduler"
 	"crawler/zhenai/parser"
 )
 
@@ -12,5 +13,9 @@ func main() {
 		ParserFunc: parser.ParseCityList,
 	}
 
-	engine.SimpleEngine{}.Run(request)
+	e:=engine.ConcurrentEngine{
+		Scheduler:&scheduler.SimpleScheduler{},
+		WorkerCount:100,
+	}
+	e.Run(request)
 }
