@@ -10,13 +10,15 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
 )
 
 /**
 爬取网络资源函数
 */
+var rateLimiter = time.Tick(500 * time.Millisecond)
 func Fetch(url string) ([]byte, error) {
-
+	<- rateLimiter
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {

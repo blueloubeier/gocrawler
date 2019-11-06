@@ -25,7 +25,6 @@ func ParseCity(contents []byte) engine.ParseResult {
 		log.Printf("UserName:%s URL:%s\n", string(m[2]), string(m[1]))
 
 		//把用户信息人名加到item里
-		result.Items = append(result.Items, name)
 
 		result.Request = append(result.Request,
 			engine.Request{

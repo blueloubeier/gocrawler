@@ -85,7 +85,9 @@ func ParseProfile(contents []byte, name string) engine.ParseResult {
 	profile.Xinzuo = extractString(contents, xinzuoReg)
 
 	result := engine.ParseResult{
-		Items: []interface{}{profile},
+		Items: []engine.Item{
+
+		},
 	}
 
 	return result
