@@ -40,8 +40,12 @@ var (
 	//<td><span class="label">是否购车：</span><span field="">未购车</span></td>
 	carReg = regexp.MustCompile(`<td><span class="label">是否购车：</span><span field="">(.+)</span></td>`)
 )
-
-func ParseProfile(contents []byte, name string) engine.ParseResult {
+var idUrlRe= regexp.MustCompile(
+	`http://album.zhenai.com/u/([\d]+)`)
+func ParseProfile(
+	contents []byte,
+	url string,
+	name string) engine.ParseResult {
 
 	profile := model.Profile{}
 
@@ -86,7 +90,10 @@ func ParseProfile(contents []byte, name string) engine.ParseResult {
 
 	result := engine.ParseResult{
 		Items: []engine.Item{
-
+			Url: url,
+			Type: "zhenai",
+			Id: extractString([]byte(url),idUrlRe),
+			Payload: profile,
 		},
 	}
 
